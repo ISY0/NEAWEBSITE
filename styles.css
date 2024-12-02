@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+    margin: 20px;
+    text-align:right;
+}
+
+th , td {
+    padding: 10px;
+    border: 1px solid ;
+}
+
+caption {
+    font-weight: bold;
+    margin-top: 60px;
+}
