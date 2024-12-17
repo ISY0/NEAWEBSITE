@@ -1,15 +1,75 @@
-table {
-    width: 100%;
-    margin: 20px;
-    text-align:right;
+header { 
+    text-align: left;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
+
+h1 { 
+    text-align: center;
+    font-family: cursive;
+    
+}
+.firsttables {
+    display: flex;
+    justify-content: center;
+    gap: 25px
+    
+}
+
+#Pointsleaders {
+    width: 45%;
+    margin-left:10px;
+    text-align:left;
+    margin-top: 45px;
+}
+#Assistsleaders {
+    width: 45%;
+    margin-right: 10px;
+    text-align: left;
+    margin-top: 45px;
+}
+
+tr:nth-child(even) {
+    background-color: #C0C0C0
+    ;
+
+}
+th {
+    background-color: #C0C0C0;
+}
+
 
 th , td {
     padding: 10px;
     border: 1px solid ;
 }
-
+td:hover {
+    background-color: gray;
+}
 caption {
     font-weight: bold;
-    margin-top: 60px;
+    font-size:large;
+    margin-top: 40px;
+}
+nav a {
+    color: black;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2em;
+}
+nav a:hover{
+    color :gray;
+}
+
+.secondtables {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#reboundleaders {
+    width: 45%;
+    margin-right: 10px;
+    text-align: left;
+    margin-top: 200px;
 }
