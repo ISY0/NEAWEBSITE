@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block head%}
+<title>The Statboard</title>
+<h1>Creating new Season Instances</h1>
+<a href="/">Back to Home</a>
+{% endblock %}
+
+{% block body %}
+<div class="Adminpage">
+    <table id="inputtable" border='1'>
+        <tr>
+            <th>Players' First name </th>
+            <th>Players' Surname name</th>
+            <th>Season (start year)</th>
+            <th>Points per game</th>
+            <th>Rebounds per game</th>
+            <th>Assists per game</th>
+            <th>FG%</th>
+            <th>3P%</th>
+            <th>Steals</th>
+            <th>Blocks</th>
+            <th>TOs</th>
+            <th>Team</th>
+        </tr>
+    <form action="/Admin" method="POST">
+        <tr>
+            <td><input type="text" name="firstname" required></input></td>
+            <td><input type="text" name="secondname" required></input></td>
+            <td><input type="number" name="Season" required></input></td>
+            <td><input type="number" name="PPG" required></input></td>
+            <td><input type="number" name="RPG" required></input></td>
+            <td><input type="number" name="APG" required></input></td>
+            <td><input type="number" name="FG%" required></input></td>
+            <td><input type="number" name="3P%" required></input></td>
+            <td><input type="number" name="SPG" required></input></td>
+            <td><input type="number" name="BPG" required></input></td>
+            <td><input type="number" name="TOs" required></input></td>
+            <td><input type="text" name="Team" required></input></td>
+        </tr>
+    
+    </table>
+    <button type="submit">Submit Stats</button>
+    </form>
+</div>
+{% if addedplayers!=[]%}
+    <p>{{addedplayers[-1]}} has been added to the database</p>
+{% endif %}
+
+<div class="newlyadded">
+    {% if addedplayers != []%}
+    <table id = "tablenew" border="1">
+        <tr>
+            <th>Player firstname</th>
+            <th>Player secondname</th>
+            <th>Season</th>
+            <th>PPG</th>
+            <th>RPG</th>
+            <th>APG</th>
+            <th>FG%</th>
+            <th>3P%</th>
+            <th>SPG</th>
+            <th>BPG</th>
+            <th>TOs</th>
+            <th>Team</th>
+            <th>Playerid</th>
+            
+        </tr>
+            {% for player in addedplayers%}
+            <tr>
+                {% for stat in player %}
+                <td>{{stat}}</td>
+                {% endfor %}
+                <td>
+                    <a href="/delete/{{player[12]}}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block head%}
+<title>The Statboard</title>
+{% endblock %}
+
+{% block body %}
+<form action="/Login" method="POST">
+    <div class="Loginpage">
+        <h1>Login</h1>
+        <div class="inputbox"></div>
+            <input type="text" name='Username' placeholder="Username" required>
+            <i class='bx bxs-user'></i>
+        </div>
+        <div class="inputbox">
+            <input type="password" name="Password" placeholder="Password" required>
+            <i class='bx bxs-lock-alt'></i>
+        </div>
+        <button type="submit" class="btn">Login</button>
+    </div>
+</form>
+
+{% endblock %}

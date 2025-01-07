@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block head%}
+<title>The Statboard</title>
+
+{% endblock %}
+{% block body %}
+    <div class="tabs">
+        <div class="buttons">
+            <button onclick="showPanel(0)">Home</button>
+            <button onclick="showPanel(1)">Formula Page</button>
+            <button onclick="showPanel(2)">Stat Predictor</button>
+        </div>
+        <div class="Tabcontent">
+            <div class="firsttables">
+                <table id='Pointsleaders' border="3">
+                    <caption>Points Leaders</caption>
+                    <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Points Per game</th>
+                            <th>FG%</th>
+                            <th>3P%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in range(0,5)%}
+                            <tr>
+                                <td> {{Points[x+5][0] + " " +Points[x+5][1]}}</td>
+                                <td> {{Points[x][0]}}</td>
+                                <td> {{Points[x][1]}}</td>
+                                <td> {{Points[x][2]}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <table id="Assistsleaders" border="3">
+                    <caption>Assists Leaders</caption>
+                    <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Assists Per game</th>
+                            <th>Turnovers per game</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in range(0,5)%}
+                            <tr>
+                                <td>{{Assists[x+5][0] + " " + Assists[x+5][1]}}</td>
+                                <td>{{Assists[x][0]}}</td>
+                                <td>{{Assists[x][1]}}</td>
+                            </tr>
+                        {% endfor %}
+        
+                           
+                    </tbody>
+                </table>
+            </div>
+            <div class = "secondtables">
+                <table id="Reboundleaders" border="3">
+                    <caption>Rebound Leaders</caption>
+                    <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Rebound per game</th>   
+                            <th>Blocks per game</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in range(0,5)%}
+                            <tr>
+                                <td>{{Rebounds[x+5][0] + " " + Rebounds[x+5][1]}}</td>
+                                <td>{{Rebounds[x][0]}}</td>
+                                <td>{{Rebounds[x][1]}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="Tabcontent">Tab2-content</div>
+        <div class="Tabcontent">Tab3-content</div>
+    </div>
+    <a href="/Login">Admin Login</a>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+{% endblock %}
