@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>The Statboard</title>
+{% endblock %}
+
+{% block body %}
+
+<h1>{{first}} {{last}}'s Stats</h1>
+<div class="home">
+    <a href="/">Back to Home</a>
+</div>
+<div class="seasonsearchbar">
+    <form action="/PlayerStats" method="GET">
+        <input name="PlayerSearch" placeholder="Search for a player" type="text" required>
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div id="graph"></div>
+<script>
+    var graph_json = JSON.parse(`{{ graph_json | safe }}`);
+    console.log("Graph JSON:", graph_json); 
+    var graphDiv = document.getElementById("graph")
+    Plotly.newPlot(graphDiv, graph_json.data, graph_json.layout);
+</script>
+<div class="playerinfo">
+    <table id="Grades">
+        <caption>Player's Statistic Grades in most recent Season</caption>
+        <tr>
+            <th>Statistic</th>
+            <th>Player's Statistic</th>
+            <th>Grade</th>
+        </tr>
+        <tr>
+            <td>Points per game</td>
+            <td>{{stats[2]}}</td>
+            <td>{{grades[0]}}</td>
+        </tr>
+        <tr>
+            <td>Rebounds per game</td>
+            <td>{{stats[3]}}</td>
+            <td>{{grades[1]}}</td>
+        </tr>
+        <tr>
+            <td>Assists per game</td>
+            <td>{{stats[4]}}</td>
+            <td>{{grades[2]}}</td>
+        </tr>
+        <tr>
+            <td>Field goal percentage</td>
+            <td>{{stats[5]}}%</td>
+            <td>{{grades[3]}}</td>
+        </tr>
+        <tr>
+            <td>3-Point percentage </td>
+            <td>{{stats[6]}}%</td>
+            <td>{{grades[4]}}</td>
+        </tr>
+        <tr>
+            <td>Steals per game</td>
+            <td>{{stats[7]}}</td>
+            <td>{{grades[5]}}</td>
+        </tr>
+        <tr>
+            <td>Blocks per game</td>
+            <td>{{stats[8]}}</td>
+            <td>{{grades[6]}}</td>
+        </tr>
+    </table>
+    <table id="Team">
+        |<caption>Team's Played For</caption>
+        <tr>
+            <th>Team</th>
+            <th></th>
+            <th>Number of years playing for the team</th>
+        </tr>
+        {% for x in range(0,teams|length) %}
+        <tr>
+            <td>{{teams[x]}}</td>
+            <td>
+                {% if teams[x] in teamlogos %}
+                        <img src="{{ url_for('static', filename='' ~ teamlogos[teams[x]]) }}" class="teamlogo">
+                {% else %}
+                    <a> WHERE THE IMAGE AT BRUV</a>
+                {% endif %}
+            </td>
+            <td>{{years[x]}}</td>
+        {% endfor %}
+        </tr>
+    </table>
+</div>
+<div class="intro">
+    <p>Note that each player has different strengths and weaknesses meaning sometimes being elite in a singular category could qualify them to be an elite player.</p>
+    <p>However, as we see the NBA, and basketball as a sport, evolve players are becoming more skilled and versatile than ever before!</p>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block head%}
+<title>The Statboard</title>
+{% endblock %}
+{% block body %}
+<div class="home">
+    <a href="/">Back to Home</a>
+</div>
+<h1>Search for a season</h1>
+<div class="seasonsearchbar">
+    <form action="/Table" method="POST">
+        <input name="Seasonsearch" placeholder="Search for a season" type="number">
+        <button type="submit">Search</button>
+    </form>
+</div>
+{% if Table == True %}
+    <div class="BIG">
+        <table id="MainTable" border='1'>
+            <caption>{{Season}}-{{Season+1}} Season</caption>
+            <tr>
+                <th>Players' Name </th>
+                <th>Points per game</th>
+                <th>Rebounds per game </th>
+                <th>Assists per game</th>
+                <th>FG%</th>
+                <th>3P%</th>
+                <th>Steals</th>
+                <th>Blocks</th>
+                <th>TOs</th>
+                <th>Team</th>
+            </tr>
+            {% for playerseason in data %}
+            <tr>
+                <td>{{playerseason[0][11]}} {{playerseason[0][12]}}</td>
+                <td>{{playerseason[0][2]}}</td>
+                <td>{{playerseason[0][3]}}</td>
+                <td>{{playerseason[0][4]}}</td>
+                <td>{{playerseason[0][5]}}</td>
+                <td>{{playerseason[0][6]}}</td>
+                <td>{{playerseason[0][7]}}</td>
+                <td>{{playerseason[0][8]}}</td>
+                <td>{{playerseason[0][9]}}</td>
+                <td>{{playerseason[0][10]}} 
+                    {% if playerseason[0][10] in teamlogos %}
+                        <img src="{{ url_for('static', filename='' ~ teamlogos[playerseason[0][10]]) }}" class="teamlogo">
+                    {% else %}
+                        <a> WHERE THE IMAGE AT BRUV</a>
+                    {% endif %}
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+<h1>
+    {{output}}
+</h1>
+{% endif %}
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

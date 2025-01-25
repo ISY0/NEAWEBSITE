@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% block head%}
+<title>The Statboard</title>
+{% endblock %}
+{% block body %}
+{% if Stats == True %}
+<script>
+    var stats = true;
+</script>
+{% else %}
+<script>
+    var stats = false;
+</script>
+{% endif %}
+
+    <div class="tabs">
+        <div class="buttons">
+            <button onclick="showPanel(0)">Home</button>
+            <button onclick="showPanel(1)">Formula Page</button>
+            <button onclick="showPanel(2)">Stat Predictor</button>
+        </div>
+        <div class="Tabcontent">
+            <div class="intro">
+                <h1>The Statboard</h1>
+                <p>Welcome to the Statboard, here you can view the top players in the NBA for points, rebounds, and assists. You can also view the formula page to see how the stats are calculated. If you want to see how a player is predicted to perform in the future, you can use the stat predictor tab. 
+                </p>
+                <p>Also search through The Top 150 performers of every season since 1980 !</p>
+                <p>To do this navigate to our Table button at the bottom of the page</p>
+                <p>To view any Player's individualised statistics click on their name on the table</p>
+                <p>Enjoy your stay!</p>
+                
+            </div>
+            <div class="firsttables">
+                <table id='Pointsleaders' border="3">
+                    <caption>Points Leaders</caption>
+                    <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Points Per game</th>
+                            <th>FG%</th>
+                            <th>3P%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for Player in Points %}
+                            <tr>
+                                <td> {{Player[0][11] + " " +Player[0][12]}}</td>
+                                <td> {{Player[0][2]}}</td>
+                                <td> {{Player[0][5]}}</td>
+                                <td> {{Player[0][6]}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <table id="Assistsleaders" border="3">
+                    <caption>Assists Leaders</caption>
+                    <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Assists Per game</th>
+                            <th>Turnovers per game</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for Player in Assists %}
+                            <tr>
+                                <td> {{Player[0][11] + " " +Player[0][12]}}</td>
+                                <td> {{Player[0][4]}}</td>
+                                <td> {{Player[0][9]}}</td>                            
+                            </tr>
+                        {% endfor %}
+        
+                           
+                    </tbody>
+                </table>
+            </div>
+            <div class = "secondtables">
+                <table id="Reboundleaders" border="3">
+                    <caption>Rebound Leaders</caption>
+                    <thead>
+                        <tr>
+                            <th>Player Name</th>
+                            <th>Rebound per game</th>   
+                            <th>Blocks per game</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for Player in Rebounds %}
+                            <tr>
+                                <td> {{Player[0][11] + " " +Player[0][12]}}</td>
+                                <td> {{Player[0][3]}}</td>
+                                <td> {{Player[0][8]}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="Tabcontent">
+            <h2>Formula Page</h2>
+            <div class="formulapage">
+                <h3>Points Per Game (PPG)</h3>
+                <p>Points per game works out an average number of points that a player score every game</p>
+                <p>Points for the entire season / Total number of games played </p>
+                <h3>Rebounds Per Game (RPG)</h3>
+                <p>Rebounds per game works out an average number of rebounds that a player gets every game</p>
+                <p>Rebounds for the entire season / Total number of games played </p>
+                <h3>Assists Per Game (APG)</h3>
+                <p>Assists per game works out an average number of assists that a player gets every game</p>
+                <p>Assists for the entire season / Total number of games played </p>
+                <h3>Field Goal Percentage (FG%)</h3>
+                <p>Field goal percentage works out the percentage of shots that a player makes of their total shots attempted</p>
+                <p>Field Goals Made / Field Goals Attempted * 100</p>
+                <h3>3-Point Percentage (3P%)</h3>
+                <p>3-Point percentage works out the percentage of 3-point shots that a player makes of their total 3-point shots attempted</p>
+                <p>3-Point Field Goals Made / 3-Point Field Goals Attempted * 100</p>
+                <h3>Steals Per Game (SPG)</h3>
+                <p>Steals per game works out an average number of steals that a player gets every game</p>
+                <p>Steals for the entire season / Total number of games played </p>
+                <h3>Blocks Per Game (BPG)</h3>
+                <p>Blocks per game works out an average number of blocks that a player gets every game</p>
+                <p>Blocks for the entire season / Total number of games played </p>
+                <h3>Turnovers Per Game (TOs)</h3>
+                <p>Turnovers per game works out an average number of turnovers that a player gets every game</p>
+                <p>Turnovers for the entire season / Total number of games played </p>
+                <h3>Effective Field Goal Percentage</h3>
+                <p>Effective Field Goal Percentage works out the percentage of shots that a player makes of their total shots attempted, but it takes into account the fact that 3-point shots are worth more than 2-point shots</p>
+                <p>(Field Goals Made + 0.5 * 3-Point Field Goals Made) / Field Goals Attempted * 100</p>
+            </div>
+        </div>
+        <div class="Tabcontent">
+            <form action="/" method="POST">
+                <div class="PlayerSearch">
+                    <input  type="text" placeholder="Player Name" name="playersearch" required>
+                    <button  type="submit">Submit</button>
+                </div>
+            </form>
+            {% if PlayerStatsValid == True %}
+            <div id="prediction" style="width: 100%; height: 500px;"></div>
+            <script>
+                var prediction = JSON.parse(`{{ prediction | safe }}`);
+                var graphDiv = document.getElementById("prediction")
+                Plotly.newPlot(graphDiv, prediction.data, prediction.layout);
+            </script>
+
+            {% endif %}
+            {% if PlayerStatsValid == False %}
+            <p>{{comment}} </p>
+            {% endif %}
+            <div class="intro">
+                <p>Please Note that this graph is NOT completely accurate and doesn't model all players statistics correctly. The model simply assumes a rise and fall pattern in a player's performance as they become older which is a common trend amongst many NBA players</p>
+            </div>
+        </div>
+    </div>
+    <div class="bottombuttons">
+        <button onclick="window.location.href='/Table'">Table</button>
+        <button onclick="window.location.href='/Login'">Admin Login</button>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+{% endblock %}
