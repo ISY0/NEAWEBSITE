@@ -1,0 +1,450 @@
+
+
+
+.Tabcontent .PlayerSearch {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.Tabcontent .PlayerSearch input {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    margin: 9px 0;
+}
+.Tabcontent .PlayerSearch button {
+    background-color: #45a000;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: none;
+    width: 100px;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-size: 20px;
+    justify-content: center;
+}
+.Tabcontent .PlayerSearch button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    background-color: #00630f;
+}
+.intro {
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    font-size: 50px;
+    color: white;
+    text-shadow: -2px 2px 0 black;
+    border-radius: 40px;
+    backdrop-filter: blur(3px);
+    margin-left: 140px;
+    margin-right: 140px;
+    border: 1px solid black;
+    margin-top: 50px ;
+    
+}
+.intro h1 {
+    margin-top: 50px;
+    font-size: 50px;
+    text-align: center;
+    text-decoration: underline;
+
+   
+}
+.intro p {
+    margin-top: 50px;
+    font-size: 40px;
+    text-align: center;
+    
+}
+.home {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family: sans-serif;
+    font-size: 20px;
+    color: white;
+    text-shadow: -2px 2px 0 black;
+}
+.home a{
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    backdrop-filter: blur(5px);
+    background-color: transparent;
+}
+
+.home a:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+.bottombuttons {
+    margin-top: 50px;
+}
+
+
+.bottombuttons button {
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-size: 20px;
+    text-shadow: -2px 2px 0 black;
+    color: white;
+}
+.bottombuttons button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+.seasonsearchbar {
+    justify-content: center;
+    display: flex;
+    margin-top: 50px;
+    gap: 20px;
+}
+.seasonsearchbar input {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 20px;
+    justify-content: center;
+}
+.seasonsearchbar button {
+    background-color: #45a000;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: none;
+    width: 100px;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-size: 20px;
+    justify-content: center;
+}
+
+.seasonsearchbar button:hover {
+    opacity: 0.8;
+    background-color: #00630f;
+    cursor: pointer;
+}
+h1 {
+    color: white;
+    font-family: sans-serif;
+    text-shadow: -3px 3px 3px black;
+    text-align: center;
+    font-size: 40px;
+}
+
+#Grades {
+    margin-top: 30px;
+    width: 50%;
+}
+#team {
+    margin-top: 30px;
+    width: 40%;
+}
+.playerinfo {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+
+.Adminpage button {
+    background-color: #45a000;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    width: 100%;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.Adminpage button:hover {
+    opacity: 0.8;
+    background-color: #00630f;
+    cursor: pointer;
+
+}
+.deleteplayer {
+    margin-top: 100px;
+    justify-content: center;
+    text-shadow: -2px 2px 0 black;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.deleteplayer .yes button {
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+.deleteplayer .yes button:hover {
+    opacity: 0.8;
+    background-color: #b30000;
+    cursor: pointer;
+}
+.deleteplayer .no button:hover {
+    opacity: 0.8;
+    background-color: #00630f;
+    cursor: pointer;
+}
+.deleteplayer .no button {
+    background-color: green;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+a {
+    color: white;
+    text-decoration: none;
+    text-shadow: -2px 2px 0 black;
+}
+p {
+    color: white;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.Tabcontent .formulapage {
+    color: white;
+}
+h2 {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+    text-shadow: -2px 2px 0 black;
+
+}
+h3 {
+    color: white;
+    font-weight: bold;
+    text-shadow: -1px 1px 0 black;
+}
+body {
+    background-image: url('logos/background.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: sans-serif;
+}
+#inputtable {
+    max-width: 96%; 
+    display: flex;
+    justify-content: center;
+    font-family: sans-serif;
+    font-size: small;
+    box-sizing: border-box;
+    border-spacing: 0px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0px;
+    background-color: white;
+
+}
+.Adminpage h1{
+    font-family: sans-serif;
+    justify-content: center;
+    font-weight: bold;
+}
+.Adminpage input{
+    width:117px;
+}
+
+
+#inputtable th {
+    background-color: #C0C0C0;
+}
+
+.tabs {
+    width: 100%;
+    background-color: transparent;
+}
+
+.tabs .buttons button{
+    width: 33%;
+    height: 100%;
+    outline:none;
+    border:none;
+    font-family: sans-serif;
+    font-size: 20px;
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    color: white;
+    text-shadow: -2px 2px 0 black;
+}
+.tabs .buttons {
+    display:flex;
+    height: 90px;
+    width: 100%;
+    border-radius: 30px solid black  ;
+    position: relative;
+    border-bottom: 3px solid black ;
+}
+.tabs .buttons button:hover{
+    background-color: transparent;
+    opacity: 0.8;
+    cursor:pointer;
+}
+
+.tabs .Tabcontent {
+    background-color: transparent;
+    height: 40%;
+    color: black;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    display: none;
+}
+
+
+
+h1 { 
+    text-align: center;
+    font: sans-serif;
+    
+}
+.firsttables {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 25px
+    
+}
+
+#Pointsleaders {
+    width: 45%;
+    margin-left:10px;
+    text-align:left;
+    margin-top: 45px;
+    text-align: center;
+}
+#Assistsleaders {
+    width: 45%;
+    margin-right: 10px;
+    text-align: left;
+    margin-top: 45px;
+    text-align: center;
+
+}
+table {
+    border-radius: 15px;
+    border-spacing: 5px;
+    background-color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #C0C0C0;
+
+}
+table th {
+    background-color: #C0C0C0;
+}
+
+
+table th , td {
+    padding: 12px;
+    border: 1px solid ;
+    border-radius: 2px;
+    text-align: center;
+}
+table td:hover {
+    background-color: gray;
+    cursor: pointer;
+}
+
+caption {
+    font-weight: bold;
+    font-size:30px;
+    margin-top: 40px;
+    margin-bottom: 5px ;
+    color : white;
+    text-shadow: -2px 2px 0 black;
+
+}
+nav a {
+    color: black;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2em;
+}
+nav a:hover{
+    color :gray;
+}
+
+.secondtables {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#reboundleaders {
+    width: 45%;
+    margin-right: 10px;
+    text-align: center;
+    margin-top: 200px;
+}
+
+#tablenew {
+    justify-content: center;
+    width: 60%;
+    text-align: center;
+    gap: 25px;
+}
+
+.teamlogo {
+    width: 30px;
+    height: 30px;
+
+}
+
+#MainTable {
+    width: 90%;
+    margin-top: 50px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: medium;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.BIG tr:nth-child(even) {
+    background-color: #C0C0C0
+    ;
+}
