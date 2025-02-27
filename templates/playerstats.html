@@ -16,6 +16,9 @@
         <button type="submit">Search</button>
     </form>
 </div>
+{% if Playerfound == False %}
+    <h2>Player not found, please try again</h2>
+{% endif %}
 <div id="graph"></div>
 <script>
     var graph_json = JSON.parse(`{{ graph_json | safe }}`);
@@ -71,7 +74,7 @@
         |<caption>Team's Played For</caption>
         <tr>
             <th>Team</th>
-            <th></th>
+            <th>Team Logo</th>
             <th>Number of years playing for the team</th>
         </tr>
         {% for x in range(0,teams|length) %}
