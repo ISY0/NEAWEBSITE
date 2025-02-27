@@ -193,12 +193,16 @@ def model(first,last):
 
 def gradingsystem(first,last,recentseason=2022):
     playerseasons = nametostats(first,last,recentseason)
+    if len(playerseasons) == 0:
+        return None , None
     playerseason = playerseasons[0]
-    if playerseason[2] > 25:
+    
+
+    if playerseason[2] > 27:
         pointsgrade = "A+"
-    elif playerseason[2] > 18 and playerseason[2] <= 25:
+    elif playerseason[2] > 20 and playerseason[2] <= 27:
         pointsgrade = "A"
-    elif playerseason[2] > 14 and playerseason[2] <= 18:
+    elif playerseason[2] > 14 and playerseason[2] <= 20:
         pointsgrade = "B"
     elif playerseason[2] > 10 and playerseason[2] <= 14:
         pointsgrade = "C"
@@ -309,6 +313,9 @@ def findrecentseason(First,Last):
         ON Player.playerid = Season.playerid
         WHERE Player.Firstname = %s AND Player.Lastname = %s""",(First,Last,))
     recentseason = cursor.fetchall()
+    if recentseason[0][0] == None:
+        return None
+    print(recentseason)
     return recentseason[0][0]
 
 def Modelpredictor(first,last):
@@ -326,6 +333,8 @@ def Modelpredictor(first,last):
                 ON Player.playerid = Season.playerid
                 WHERE Player.Firstname = %s AND Player.Lastname = %s""",(first,last,) )
     firstyear = cursor.fetchall()
+    if len(playerseasons) == 0:
+        return "Player not found in database. Please check spelling and try again."
     if len(playerseasons) < 3:
         return "Not enough data to predict future performance"
     if len(playerseasons) > 14:
@@ -438,9 +447,12 @@ def index():
     if request.method == 'POST':
         name = request.form['playersearch']
         first , last = name.split(" ")
+        if first[0].islower() or last[0].islower():
+            first = first[0].upper() + first[1:]
+            last = last[0].upper() + last[1:]
         Stats = True
         prediction = Modelpredictor(first,last)
-        if prediction == "Not enough data to predict future performance" or prediction == "Model can only predict up to players' 18th season. Modelling this player would be inaccurate":
+        if prediction == "Not enough data to predict future performance" or prediction == "Model can only predict up to players' 18th season. Modelling this player would be inaccurate" or prediction == "Player not found in database. Please check spelling and try again.":
             comment = prediction
             return render_template("index.html", Points=Points ,Rebounds=Rebounds , Assists=Assists ,prediction=prediction,Stats=Stats,PlayerStatsValid=False,comment=comment)
         return render_template("index.html", Points=Points ,Rebounds=Rebounds , Assists=Assists ,prediction=prediction,Stats=Stats,PlayerStatsValid=True)
@@ -566,17 +578,27 @@ def cell_click():
     cell_content = request.args.get('content', None)
     if not cell_content:
         first,last = request.args.get("PlayerSearch").split(" ")
+        if first[0].islower() or last[0].islower():
+            first = first[0].upper() + first[1:]
+            last = last[0].upper() + last[1:]
         if not first or not last:
             raise ValueError
         cell_content = first + " " + last
     else:
         first , last = cell_content.split(" ")
+    Playerfound = True
+    recentseason = findrecentseason(first,last)
+    statsandgrades = gradingsystem(first,last,recentseason)
+    if statsandgrades == (None,None):
+        Playerfound = False
+        cell_content = "LeBron James"
+        first,last = "LeBron","James"
     recentseason = findrecentseason(first,last)
     graph = model(first,last)
     statsandgrades = gradingsystem(first,last,recentseason)
     stats , grades = statsandgrades
     teams , years= teamlist(first,last)
-    return render_template('playerstats.html', cell_content=cell_content , graph_json=graph,stats=stats,grades=grades,teams=teams,teamlogos=teamlogos,years=years,first=first,last=last)
+    return render_template('playerstats.html', cell_content=cell_content , graph_json=graph,stats=stats,grades=grades,teams=teams,teamlogos=teamlogos,years=years,first=first,last=last,Playerfound=Playerfound)
 
 @app.route('/delete/<int:playerid>')
 def delete(playerid):
